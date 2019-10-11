@@ -1,64 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>##PUT APPLICATION TITLE HERE##</title>
-
-    <!-- Load SAPUI5 (from a remote server), select blue crystal theme and commons+ux3 control libraries -->
-    <script id="sap-ui-bootstrap"
-        src="/sap/ui5/1/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_bluecrystal"
-        data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.ui.table"></script>
-        
-        
-    <script>
-    
-    // ##Register Path to your views here
-    //  jQuery.sap.registerModulePath('##packagePath here##', './');
-    // Create the ux3 Shell
-    // ...fill several properties and aggregations in JSON syntax; alternatively they could also be set one by one
-    var oShell = new sap.ui.ux3.Shell("myShell", {
-        appIcon:"http://www.sap.com/global/images/SAPLogo.gif", // put the SAP logo into the header
-        appTitle:"##PUT APPLICATION TITLE HERE##",                 // give a title
-        worksetItems:[                                          // add some items to the top navigation
-            new sap.ui.ux3.NavigationItem({key:"wi_home",text:"Home"}),
-            new sap.ui.ux3.NavigationItem({key:"wi_second",text:"Second"})
-        ]        
-    });
-        
-    // Page content creation - for each workset the content is defined here
-    // For demo purposes there is just one button on each page
-    var mContent = {}; // a map to remember page content once it is created
-    function getContent(key) {
-        if (mContent[key]) return mContent[key]; // if content is already created, return it directly
-
-        if (key == "wi_home") {
-            // Provides the your view per Navigation Item here
-            //mContent[key] = sap.ui.view({ type: sap.ui.core.mvc.ViewType.JS, viewName: "##your View goes here##"});
-        } 
-        return mContent[key];       
-    }
-    
-    // when the user selects a workset, put the respective content into the shell's main area
-    oShell.attachWorksetItemSelected(function(oEvent) {
-        var key = oEvent.getParameter("key");    
-        oShell.setContent(getContent(key));
-    });
-    
-    // set the initial content of the Shell - the Home Overview is selected initially
-    oShell.setContent(getContent("wi_home"));
-
-    // place the Shell into the <div> element defined below
-    oShell.placeAt("shellArea");
-
-    </script>
+<!DOCTYPE html>  
+<html><head>  
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />  
+    <title>Hello World</title>  
+  
+    <script id='sap-ui-bootstrap' type='text/javascript'  
+        src='/sap/ui5/1/resources/sap-ui-core.js'  
+        data-sap-ui-theme='sap_bluecrystal'  
+        data-sap-ui-libs='sap.ui.commons'></script>   
+  
+<script>  
+    var btn = new sap.ui.commons.Button({  
+        text:'Hello World',  
+        press:function(){alert('Hello!')}  
+    });  
+    btn.placeAt('content');  
+</script>
 
 </head>
-<body class="sapUiBody">
-
-    <!-- This is where the Shell will live -->
-    <div id="shellArea"></div>
-
+<body class='sapUiBody'>
+    <div id='content'></div>
 </body>
 </html>
